@@ -1,3 +1,8 @@
+
+<?php
+session_start();
+$logado = !empty($_SESSION['jwt']);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,7 +10,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aluga++ | Locação de Veículos</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/main.js" defer></script>
+    <?php if (!$logado): ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.btn-alugar');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Para alugar um veículo, faça login ou cadastre-se!');
+            });
+        });
+    });
+    </script>
+    <?php endif; ?>
 </head>
 <body>
     <header>
@@ -13,9 +30,13 @@
             <div class="logo">Aluga++</div>
             <ul class="nav-links">
                 <li><a href="index.php">Início</a></li>
-                <li><a href="login.php">Entrar</a></li>
-                <li><a href="register.php">Cadastrar</a></li>
-                <li><a href="profile.php">Perfil</a></li>
+                <?php if (!$logado): ?>
+                    <li><a href="login.php">Entrar</a></li>
+                    <li><a href="register.php">Cadastrar</a></li>
+                <?php else: ?>
+                    <li><a href="profile.php">Perfil</a></li>
+                    <li><a href="logout.php">Sair</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>
@@ -34,7 +55,11 @@
                     <p>Tipo: Moto</p>
                     <p>Valor: R$ 80,00</p>
                     <p>Tempo máximo: 24h</p>
-                    <button class="btn-alugar">Alugar</button>
+                    <?php if ($logado): ?>
+                        <a href="rent.php" class="btn-alugar">Alugar</a>
+                    <?php else: ?>
+                        <button class="btn-alugar">Alugar</button>
+                    <?php endif; ?>
                 </div>
                 <div class="card-veiculo">
                     <img src="img/fiat-uno.jpg" alt="Fiat Uno">
@@ -42,7 +67,11 @@
                     <p>Tipo: Carro</p>
                     <p>Valor: R$ 120,00</p>
                     <p>Tempo máximo: 48h</p>
-                    <button class="btn-alugar">Alugar</button>
+                    <?php if ($logado): ?>
+                        <a href="rent.php" class="btn-alugar">Alugar</a>
+                    <?php else: ?>
+                        <button class="btn-alugar" onclick="alert('Para alugar um veículo, faça login ou cadastre-se!')">Alugar</button>
+                    <?php endif; ?>
                 </div>
                 <div class="card-veiculo">
                     <img src="img/yamaha-fazer.jpg" alt="Yamaha Fazer">
@@ -50,7 +79,11 @@
                     <p>Tipo: Moto</p>
                     <p>Valor: R$ 90,00</p>
                     <p>Tempo máximo: 24h</p>
-                    <button class="btn-alugar">Alugar</button>
+                    <?php if ($logado): ?>
+                        <a href="rent.php" class="btn-alugar">Alugar</a>
+                    <?php else: ?>
+                        <button class="btn-alugar" onclick="alert('Para alugar um veículo, faça login ou cadastre-se!')">Alugar</button>
+                    <?php endif; ?>
                 </div>
                 <div class="card-veiculo">
                     <img src="img/vw-gol.jpg" alt="Volkswagen Gol">
@@ -58,7 +91,11 @@
                     <p>Tipo: Carro</p>
                     <p>Valor: R$ 130,00</p>
                     <p>Tempo máximo: 48h</p>
-                    <button class="btn-alugar">Alugar</button>
+                    <?php if ($logado): ?>
+                        <a href="rent.php" class="btn-alugar">Alugar</a>
+                    <?php else: ?>
+                        <button class="btn-alugar" onclick="alert('Para alugar um veículo, faça login ou cadastre-se!')">Alugar</button>
+                    <?php endif; ?>
                 </div>
             </div>
         </section>
