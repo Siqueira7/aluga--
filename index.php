@@ -48,7 +48,7 @@ $logado = !empty($_SESSION['jwt']);
         <section class="veiculos">
             <h2>Veículos disponíveis</h2>
             <div class="veiculos-lista">
-                <!-- Cards de veículos para demonstração -->
+                <!-- Card Honda CG 160 -->
                 <div class="card-veiculo">
                     <img src="img/honda-cg160.jpg" alt="Honda CG 160">
                     <h3>Honda CG 160</h3>
@@ -61,6 +61,7 @@ $logado = !empty($_SESSION['jwt']);
                         <button class="btn-alugar">Alugar</button>
                     <?php endif; ?>
                 </div>
+                <!-- Card Fiat Uno -->
                 <div class="card-veiculo">
                     <img src="img/fiat-uno.jpg" alt="Fiat Uno">
                     <h3>Fiat Uno</h3>
@@ -70,9 +71,10 @@ $logado = !empty($_SESSION['jwt']);
                     <?php if ($logado): ?>
                         <a href="rent.php" class="btn-alugar">Alugar</a>
                     <?php else: ?>
-                        <button class="btn-alugar" onclick="alert('Para alugar um veículo, faça login ou cadastre-se!')">Alugar</button>
+                        <button class="btn-alugar">Alugar</button>
                     <?php endif; ?>
                 </div>
+                <!-- Card Yamaha Fazer -->
                 <div class="card-veiculo">
                     <img src="img/yamaha-fazer.jpg" alt="Yamaha Fazer">
                     <h3>Yamaha Fazer</h3>
@@ -82,9 +84,10 @@ $logado = !empty($_SESSION['jwt']);
                     <?php if ($logado): ?>
                         <a href="rent.php" class="btn-alugar">Alugar</a>
                     <?php else: ?>
-                        <button class="btn-alugar" onclick="alert('Para alugar um veículo, faça login ou cadastre-se!')">Alugar</button>
+                        <button class="btn-alugar">Alugar</button>
                     <?php endif; ?>
                 </div>
+                <!-- Card Volkswagen Gol -->
                 <div class="card-veiculo">
                     <img src="img/vw-gol.jpg" alt="Volkswagen Gol">
                     <h3>Volkswagen Gol</h3>
@@ -94,7 +97,7 @@ $logado = !empty($_SESSION['jwt']);
                     <?php if ($logado): ?>
                         <a href="rent.php" class="btn-alugar">Alugar</a>
                     <?php else: ?>
-                        <button class="btn-alugar" onclick="alert('Para alugar um veículo, faça login ou cadastre-se!')">Alugar</button>
+                        <button class="btn-alugar">Alugar</button>
                     <?php endif; ?>
                 </div>
             </div>
