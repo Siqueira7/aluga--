@@ -44,18 +44,9 @@ aluga++/
      composer require firebase/php-jwt
      ```
    - Isso criará a pasta `vendor` e o arquivo `vendor/autoload.php`.
-
-3. **Configuração do banco:**
-   - O arquivo de conexão está em `db/db.php`.
-   - Ajuste usuário/senha se necessário:
-     ```php
-     $host = 'localhost';
-     $user = 'root';
-     $pass = '';
-     $db = 'alugapp';
      ```
 
-4. **Imagens:**
+3. **Imagens:**
    - Adicione as imagens dos veículos na pasta `img/` com os nomes indicados.
 
 ## Funcionalidades
