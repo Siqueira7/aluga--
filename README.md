@@ -37,6 +37,7 @@ aluga++/
    - Importe o arquivo `db/alugapp_completo.sql` no MySQL (phpMyAdmin ou terminal).
    - Isso criará o banco `alugapp`, tabelas e veículos de demonstração.
 
+
 2. **Dependências PHP:**
    - Instale o Composer: https://getcomposer.org/download/
    - No terminal, execute:
@@ -46,7 +47,18 @@ aluga++/
    - Isso criará a pasta `vendor` e o arquivo `vendor/autoload.php`.
      ```
 
-3. **Imagens:**
+
+3. **Configuração do banco:**
+   - O arquivo de conexão está em `db/db.php`.
+   - Ajuste usuário/senha se necessário:
+     ```php
+     $host = 'localhost';
+     $user = 'root';
+     $pass = '';
+     $db = 'alugapp';
+
+
+4. **Imagens:**
    - Adicione as imagens dos veículos na pasta `img/` com os nomes indicados.
 
 ## Funcionalidades
