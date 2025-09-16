@@ -1,4 +1,3 @@
-
 <?php
 require_once 'db/db.php';
 
@@ -10,8 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($nome && $email && $senha) {
         $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
         try {
-            $stmt = $pdo->prepare('INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)');
-            $stmt->execute([$nome, $email, $senhaHash]);
+            $is_admin = false; // Sempre falso para cadastro público
+            $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, is_admin) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$nome, $email, $senhaHash, $is_admin]);
             header('Location: login.php?cadastro=ok');
             exit;
         } catch (PDOException $e) {

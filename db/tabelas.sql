@@ -5,7 +5,8 @@ CREATE TABLE usuarios (
     email VARCHAR(100) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL,
     token_jwt VARCHAR(255),
-    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+    is_admin BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE veiculos (
@@ -14,7 +15,8 @@ CREATE TABLE veiculos (
     tipo VARCHAR(50) NOT NULL,
     valor DECIMAL(10,2) NOT NULL,
     tempo_maximo INT NOT NULL, -- em horas
-    disponivel BOOLEAN DEFAULT TRUE
+    disponivel BOOLEAN DEFAULT TRUE,
+    imagem VARCHAR(255)
 );
 
 CREATE TABLE locacoes (
@@ -34,3 +36,4 @@ INSERT INTO veiculos (modelo, tipo, valor, tempo_maximo, disponivel) VALUES
 ('Fiat Uno', 'Carro', 120.00, 48, TRUE),
 ('Yamaha Fazer', 'Moto', 90.00, 24, TRUE),
 ('Volkswagen Gol', 'Carro', 130.00, 48, TRUE);
+

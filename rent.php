@@ -1,4 +1,3 @@
-
 <?php
 require_once 'db/db.php';
 require_once 'vendor/autoload.php';
@@ -9,6 +8,8 @@ session_start();
 $jwt_secret = 'alugapp_secret_key';
 $erro = '';
 $veiculos = [];
+
+$veiculo_id_url = isset($_GET['veiculo_id']) ? intval($_GET['veiculo_id']) : 0;
 
 if (!empty($_SESSION['jwt'])) {
     try {
@@ -79,7 +80,7 @@ if (!empty($_SESSION['jwt'])) {
                 <label for="veiculo">Veículo</label>
                 <select id="veiculo" name="veiculo" required>
                     <?php foreach ($veiculos as $v): ?>
-                        <option value="<?= $v['id'] ?>">
+                        <option value="<?= $v['id'] ?>" <?= ($v['id'] == $veiculo_id_url) ? 'selected' : '' ?>>
                             <?= htmlspecialchars($v['modelo']) ?> (<?= htmlspecialchars($v['tipo']) ?>) - R$ <?= number_format($v['valor'],2,',','.') ?> | Máx: <?= $v['tempo_maximo'] ?>h
                         </option>
                     <?php endforeach; ?>

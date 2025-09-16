@@ -1,4 +1,3 @@
-
 <?php
 require_once 'db/db.php';
 require_once 'vendor/autoload.php'; // Biblioteca JWT
@@ -30,6 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Salva token na sessão
             session_start();
             $_SESSION['jwt'] = $token;
+            $_SESSION['usuario_id'] = $user['id'];
+            $_SESSION['is_admin'] = $user['is_admin'];
             header('Location: profile.php');
             exit;
         } else {

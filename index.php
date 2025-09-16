@@ -1,7 +1,13 @@
-
 <?php
 session_start();
+require_once 'db/db.php';
 $logado = !empty($_SESSION['jwt']);
+
+// Buscar veículos disponíveis no banco
+$stmt = $pdo->query("SELECT * FROM veiculos WHERE disponivel = 1");
+$veiculos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$veiculo_id = isset($_GET['veiculo_id']) ? intval($_GET['veiculo_id']) : null;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -36,6 +42,9 @@ $logado = !empty($_SESSION['jwt']);
                 <?php else: ?>
                     <li><a href="profile.php">Perfil</a></li>
                     <li><a href="logout.php">Sair</a></li>
+                    <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
+                        <li><a href="admin_veiculos.php" class="btn-admin">Adicionar Veículo</a></li>
+                    <?php endif; ?>
                 <?php endif; ?>
             </ul>
         </nav>
@@ -48,58 +57,20 @@ $logado = !empty($_SESSION['jwt']);
         <section class="veiculos">
             <h2>Veículos disponíveis</h2>
             <div class="veiculos-lista">
-                <!-- Card Honda CG 160 -->
+                <?php foreach ($veiculos as $veiculo): ?>
                 <div class="card-veiculo">
-                    <img src="img/honda-cg160.jpg" alt="Honda CG 160">
-                    <h3>Honda CG 160</h3>
-                    <p>Tipo: Moto</p>
-                    <p>Valor: R$ 80,00</p>
-                    <p>Tempo máximo: 24h</p>
+                    <img src="img/<?php echo htmlspecialchars($veiculo['imagem']); ?>" alt="<?php echo htmlspecialchars($veiculo['modelo']); ?>">
+                    <h3><?php echo htmlspecialchars($veiculo['modelo']); ?></h3>
+                    <p>Tipo: <?php echo htmlspecialchars($veiculo['tipo']); ?></p>
+                    <p>Valor: R$ <?php echo number_format($veiculo['valor'], 2, ',', '.'); ?></p>
+                    <p>Tempo máximo: <?php echo htmlspecialchars($veiculo['tempo_maximo']); ?>h</p>
                     <?php if ($logado): ?>
-                        <a href="rent.php" class="btn-alugar">Alugar</a>
+                        <a href="rent.php?veiculo_id=<?php echo $veiculo['id']; ?>" class="btn-alugar">Alugar</a>
                     <?php else: ?>
-                        <button class="btn-alugar">Alugar</button>
+                        <button class="btn-alugar" data-veiculo="<?php echo $veiculo['id']; ?>">Alugar</button>
                     <?php endif; ?>
                 </div>
-                <!-- Card Fiat Uno -->
-                <div class="card-veiculo">
-                    <img src="img/fiat-uno.jpg" alt="Fiat Uno">
-                    <h3>Fiat Uno</h3>
-                    <p>Tipo: Carro</p>
-                    <p>Valor: R$ 120,00</p>
-                    <p>Tempo máximo: 48h</p>
-                    <?php if ($logado): ?>
-                        <a href="rent.php" class="btn-alugar">Alugar</a>
-                    <?php else: ?>
-                        <button class="btn-alugar">Alugar</button>
-                    <?php endif; ?>
-                </div>
-                <!-- Card Yamaha Fazer -->
-                <div class="card-veiculo">
-                    <img src="img/yamaha-fazer.jpg" alt="Yamaha Fazer">
-                    <h3>Yamaha Fazer</h3>
-                    <p>Tipo: Moto</p>
-                    <p>Valor: R$ 90,00</p>
-                    <p>Tempo máximo: 24h</p>
-                    <?php if ($logado): ?>
-                        <a href="rent.php" class="btn-alugar">Alugar</a>
-                    <?php else: ?>
-                        <button class="btn-alugar">Alugar</button>
-                    <?php endif; ?>
-                </div>
-                <!-- Card Volkswagen Gol -->
-                <div class="card-veiculo">
-                    <img src="img/vw-gol.jpg" alt="Volkswagen Gol">
-                    <h3>Volkswagen Gol</h3>
-                    <p>Tipo: Carro</p>
-                    <p>Valor: R$ 130,00</p>
-                    <p>Tempo máximo: 48h</p>
-                    <?php if ($logado): ?>
-                        <a href="rent.php" class="btn-alugar">Alugar</a>
-                    <?php else: ?>
-                        <button class="btn-alugar">Alugar</button>
-                    <?php endif; ?>
-                </div>
+                <?php endforeach; ?>
             </div>
         </section>
     </main>
