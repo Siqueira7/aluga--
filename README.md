@@ -50,12 +50,6 @@ aluga++/
 
 3. **Configuração do banco:**
    - O arquivo de conexão está em `db/db.php`.
-   - Ajuste usuário/senha se necessário:
-     ```php
-     $host = 'localhost';
-     $user = 'root';
-     $pass = '';
-     $db = 'alugapp';
 
 
 4. **Imagens:**
