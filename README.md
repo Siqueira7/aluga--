@@ -29,6 +29,7 @@ aluga++/
 ├── change_password.php
 ├── rent.php
 ├── logout.php
+├── admin_veiculos.php      # Painel admin para cadastro de veículos
 ```
 
 ## Instalação
@@ -58,22 +59,36 @@ aluga++/
    - Adicione as imagens dos veículos na pasta `img/` com os nomes indicados.
 
 ## Funcionalidades
-- Cadastro de usuário
+- Cadastro de usuário (apenas usuários comuns pelo site)
 - Login com autenticação JWT
 - Edição de dados e alteração de senha
-- Listagem de veículos disponíveis
+- Listagem de veículos disponíveis (apenas os cadastrados pelo admin)
 - Locação de veículos (registro e bloqueio de disponibilidade)
 - Visualização de locações no perfil
 - Logout
+- Painel administrativo para cadastro de veículos (apenas para administradores)
+- Controle de usuários administradores (apenas admin pode promover outro usuário a admin, via painel restrito ou diretamente no banco)
 - Design responsivo e moderno
+- Formulários centralizados, campos em coluna e espaçamento entre campos
 
-## Observações
-- O sistema utiliza sessões PHP e tokens JWT para autenticação.
-- As senhas são criptografadas no banco.
-- O frontend é mobile-first, com gradientes, sombras e animações suaves.
+## Controle de Administradores
+
+- Usuários comuns não podem se cadastrar como administradores.
+- Para permitir administradores, adicione o campo `is_admin` na tabela `usuarios`:
+  ```sql
+  ALTER TABLE usuarios ADD COLUMN is_admin BOOLEAN DEFAULT FALSE;
+  ```
+- Para promover um usuário a administrador, execute:
+  ```sql
+  UPDATE usuarios SET is_admin = TRUE WHERE email = 'email_do_admin@dominio.com';
+  ```
+- Apenas administradores acessam o painel `admin_veiculos.php` para cadastrar novos veículos.
+- O botão "Adicionar Veículo" aparece no menu apenas para administradores logados.
+
 
 ## Demonstração
 1. Acesse `http://localhost/aluga++/` no navegador.
 2. Cadastre-se, faça login e utilize todas as funcionalidades.
+3. Para acessar o painel admin, faça login como administrador e clique em "Adicionar Veículo".
 
 ---
