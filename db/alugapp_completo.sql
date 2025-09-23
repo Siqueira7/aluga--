@@ -32,8 +32,13 @@ CREATE TABLE IF NOT EXISTS locacoes (
 );
 
 -- Veículos de demonstração
-INSERT INTO veiculos (modelo, tipo, valor, tempo_maximo, disponivel) VALUES
-('Honda CG 160', 'Moto', 80.00, 24, TRUE),
-('Fiat Uno', 'Carro', 120.00, 48, TRUE),
-('Yamaha Fazer', 'Moto', 90.00, 24, TRUE),
-('Volkswagen Gol', 'Carro', 130.00, 48, TRUE);
+INSERT INTO veiculos (modelo, tipo, valor, tempo_maximo, disponivel, imagem) VALUES
+('Honda CG 160', 'Moto', 80.00, 24, TRUE, 'honda-cg160.jpg'),
+('Fiat Uno', 'Carro', 120.00, 48, TRUE, 'fiat-uno.jpg'),
+('Yamaha Fazer', 'Moto', 90.00, 24, TRUE, 'yamaha-fazer.jpg'),
+('Volkswagen Gol', 'Carro', 130.00, 48, TRUE, 'vw-gol.jpg');
+
+
+-- Adicionando campo is_admin na tabela usuarios
+ALTER TABLE usuarios ADD COLUMN is_admin BOOLEAN DEFAULT FALSE;
+

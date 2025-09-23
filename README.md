@@ -10,8 +10,7 @@ aluga++/
 │   └── style.css
 ├── db/
 │   ├── db.php
-│   ├── alugapp_completo.sql
-│   └── tabelas.sql
+│   └── alugapp_completo.sql
 ├── img/
 │   ├── honda-cg160.jpg
 │   ├── fiat-uno.jpg
@@ -64,9 +63,8 @@ aluga++/
 - Visualização de locações no perfil
 - Logout
 - Painel administrativo para cadastro de veículos (apenas para administradores)
-- Controle de usuários administradores (apenas admin pode promover outro usuário a admin, via painel restrito ou diretamente no banco)
-- Design responsivo e moderno
-- Formulários centralizados, campos em coluna e espaçamento entre campos
+- Controle de usuários administradores ( Só é possível alterar um usuário para admin diretamente no banco de dados)
+
 
 ## Controle de Administradores
 
@@ -86,6 +84,6 @@ aluga++/
 ## Demonstração
 1. Acesse `http://localhost/aluga++/` no navegador.
 2. Cadastre-se, faça login e utilize todas as funcionalidades.
-3. Para acessar o painel admin, faça login como administrador e clique em "Adicionar Veículo".
+3. Para acessar o painel admin, utilize o UPDATE no banco de dados para tornar o seu usuário admin, como mostrado acima.
 
 ---
