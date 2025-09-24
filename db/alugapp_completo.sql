@@ -17,7 +17,8 @@ CREATE TABLE IF NOT EXISTS veiculos (
     tipo VARCHAR(50) NOT NULL,
     valor DECIMAL(10,2) NOT NULL,
     tempo_maximo INT NOT NULL, -- em horas
-    disponivel BOOLEAN DEFAULT TRUE
+    disponivel BOOLEAN DEFAULT TRUE,
+    imagem VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS locacoes (
